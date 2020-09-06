@@ -1,0 +1,14 @@
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\bin\Debug\netcoreapp2.0\app-settings.json
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\bin\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.deps.json
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\bin\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.runtimeconfig.json
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\bin\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.runtimeconfig.dev.json
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\bin\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.dll
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\bin\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.pdb
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\obj\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.csprojAssemblyReference.cache
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\obj\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.AssemblyInfoInputs.cache
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\obj\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.AssemblyInfo.cs
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\obj\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.csproj.CoreCompileInputs.cache
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\obj\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.dll
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\obj\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.pdb
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\obj\Debug\netcoreapp2.0\Pioneer.Console.Boilerplate.genruntimeconfig.cache
+C:\Users\mi112357\source\repos\New folder\src\Pioneer.Console.Boilerplate\bin\Debug\netcoreapp2.0\Services\MetaData\Employees.xml

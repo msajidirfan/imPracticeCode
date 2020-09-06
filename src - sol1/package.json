@@ -1,0 +1,15 @@
+{
+  "author": "Sajid Irfan <msajidirfan@gmail.com>",
+  "description": "Codeathon",
+  "version": "1.0.0",
+  "name": "codeathon",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/msajidirfan"
+  },
+  "devDependencies": {
+    "del": "2.2.2",
+    "gulp": "github:gulpjs/gulp#4.0"
+  }
+}
