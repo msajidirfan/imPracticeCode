@@ -1,9 +1,0 @@
-{
-  "Configuration": {
-    "ConsoleTitle": "Employee - CRUD OPS",
-    "XMLFilePath": "\\Services\\MetaData\\Employees.xml",
-    "ValidOperationCount": 4,
-    "MaxRepeatAllowed": 30
-
-  }
-}
