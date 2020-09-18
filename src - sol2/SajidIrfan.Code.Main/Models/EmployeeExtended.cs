@@ -10,6 +10,7 @@
         /// Employee Designation
         /// </summary>
         public Address Address { get; set; }
+        public bool IsSuccess { get; set; }
 
     }
 }

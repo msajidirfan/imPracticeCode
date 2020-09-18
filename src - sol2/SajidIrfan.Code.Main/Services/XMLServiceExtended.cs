@@ -12,15 +12,17 @@ using System.Xml.Linq;
 namespace SajidIrfan.Code.Services
 {
 
-    public class XMLServiceExtended : IXMLService
+    public class XMLServiceExtended : IXMLServiceExtended
     {
         private static string xmlPath = "";
+        private readonly IConsoleInputsHelper _consoleInputsHelper;
         private readonly ILogger<TestService> _logger;
         private readonly AppSettings _config;
 
-        public XMLServiceExtended(ILogger<TestService> logger,
+        public XMLServiceExtended(ILogger<TestService> logger, IConsoleInputsHelper consoleInputsHelper,
             IOptions<AppSettings> config)
         {
+            _consoleInputsHelper = consoleInputsHelper ?? throw new ArgumentNullException(nameof(consoleInputsHelper)); 
             _logger = logger;
             _config = config.Value;
             xmlPath = config.Value.XMLFilePath;
@@ -106,6 +108,7 @@ namespace SajidIrfan.Code.Services
                         };
                     }
                 }
+                employee.IsSuccess = true;
                 System.Console.WriteLine("Following Employee Details Fetched: \n");
                 System.Console.WriteLine(JsonConvert.SerializeObject(employee));
                 _logger.LogTrace("GetEmployeeByName Ends.");
@@ -114,6 +117,7 @@ namespace SajidIrfan.Code.Services
             }
             catch (Exception e)
             {
+                employee.IsSuccess = false;
                 _logger.LogError($"Exception occured: " + e.Message);
                 return employee;
                 //throw;
@@ -163,13 +167,13 @@ namespace SajidIrfan.Code.Services
                 var doc = XDocument.Load(Directory.GetCurrentDirectory() + xmlPath);
                 employee.ID = GetAllEmployeesCount() + 1;
                 System.Console.WriteLine("Please Enter Name of Employee and press Enter");
-                employee.Name = GetInputsFromConsole.GetDetails<string>();
+                employee.Name = _consoleInputsHelper.GetDetails<string>();
                 System.Console.WriteLine("Please Enter Age of {0} and press Enter", employee.Name);
-                employee.Age = Int32.Parse(GetInputsFromConsole.GetDetails<int>());
+                employee.Age = Int32.Parse(_consoleInputsHelper.GetDetails<int>());
                 System.Console.WriteLine("Please Enter Designation of {0} and press Enter", employee.Name);
-                employee.Designation = GetInputsFromConsole.GetDetails<string>(); 
+                employee.Designation = _consoleInputsHelper.GetDetails<string>(); 
                 System.Console.WriteLine("If you don't want to Enter Address of {0} then press Enter else Please enter DoorNo", employee.Name);
-                string doorNoValue = GetInputsFromConsole.GetDetails<string>();
+                string doorNoValue = _consoleInputsHelper.GetDetails<string>();
                 if (doorNoValue == "")
                 {
                     employee.Address = new Address();
@@ -177,11 +181,11 @@ namespace SajidIrfan.Code.Services
                 else
                 {
                     System.Console.WriteLine("Please enter street");
-                    string streetValue = GetInputsFromConsole.GetDetails<string>();
+                    string streetValue = _consoleInputsHelper.GetDetails<string>();
                     System.Console.WriteLine("Please enter town");
-                    string townValue = GetInputsFromConsole.GetDetails<string>();
+                    string townValue = _consoleInputsHelper.GetDetails<string>();
                     System.Console.WriteLine("Please enter state");
-                    string stateValue = GetInputsFromConsole.GetDetails<string>();
+                    string stateValue = _consoleInputsHelper.GetDetails<string>();
                     employee.Address = new Address()
                     {
                         DoorNo = doorNoValue,
@@ -247,19 +251,19 @@ namespace SajidIrfan.Code.Services
                 var doc = XDocument.Load(Directory.GetCurrentDirectory() + xmlPath);
                 employee.ID = emp.ID;
                 System.Console.WriteLine("Existing value is {0}. If you want to change the Name of Employee. Enter new Name else Press # to skip", emp.Name);
-                string updateName = GetInputsFromConsole.GetDetails<string>();
+                string updateName = _consoleInputsHelper.GetDetails<string>();
                 employee.Name = updateName == "#" ? emp.Name : updateName;
 
                 System.Console.WriteLine("Existing value is {0}. If you want to change the Age of Employee. Enter new Age else Press 0 to skip", emp.Age);
-                string updatedAge = GetInputsFromConsole.GetDetails<string>();
+                string updatedAge = _consoleInputsHelper.GetDetails<string>();
                 employee.Age = updatedAge == "0" ? emp.Age : int.Parse(updatedAge);
 
                 System.Console.WriteLine("Existing value is {0}. If you want to change the Designation of Employee. Enter new Designation else Press # to skip", emp.Designation);
-                string updatedDesig = GetInputsFromConsole.GetDetails<string>();
+                string updatedDesig = _consoleInputsHelper.GetDetails<string>();
                 employee.Designation = updatedDesig == "#" ? emp.Designation : updatedDesig;
 
                 System.Console.WriteLine("If you want to change the Address of Employee. Enter any letter else Press # and Enter to skip address");
-                string updatedAddress = GetInputsFromConsole.GetDetails<string>();
+                string updatedAddress = _consoleInputsHelper.GetDetails<string>();
 
                 
 
@@ -277,19 +281,19 @@ namespace SajidIrfan.Code.Services
                 {
                     employee.Address = emp.Address;
                     System.Console.WriteLine("If you want to change the Address of Employee. Enter new Door Number else Press # to skip");
-                    string doorNoValue = GetInputsFromConsole.GetDetails<string>();
+                    string doorNoValue = _consoleInputsHelper.GetDetails<string>();
                     employee.Address.DoorNo = doorNoValue == "#" ? emp.Address.DoorNo : doorNoValue;
 
                     System.Console.WriteLine("If you want to change the street of Employee. Enter new street else Press # to skip");
-                    string streetValue = GetInputsFromConsole.GetDetails<string>();
+                    string streetValue = _consoleInputsHelper.GetDetails<string>();
                     employee.Address.street = streetValue == "#" ? emp.Address.street : streetValue;
 
                     System.Console.WriteLine("If you want to change the Town of Employee. Enter new Town else Press # to skip");
-                    string townValue = GetInputsFromConsole.GetDetails<string>();
+                    string townValue = _consoleInputsHelper.GetDetails<string>();
                     employee.Address.Town = townValue == "#" ? emp.Address.Town : townValue;
 
                     System.Console.WriteLine("If you want to change the state of Employee. Enter new state else Press # to skip");
-                    string stateValue = GetInputsFromConsole.GetDetails<string>();
+                    string stateValue = _consoleInputsHelper.GetDetails<string>();
                     employee.Address.State = stateValue == "#" ? emp.Address.Town : stateValue;
 
 
@@ -341,7 +345,7 @@ namespace SajidIrfan.Code.Services
                     System.Console.WriteLine("Data found with Name: {0}. Are you sure to delete the Employee then Press Y", emp.Name);
 
 
-                    if (GetInputsFromConsole.GetDetails<string>().ToLower() == "y")
+                    if (_consoleInputsHelper.GetDetails<string>().ToLower() == "y")
                     {
                         var doc = XDocument.Load(Directory.GetCurrentDirectory() + xmlPath);
                         doc.Root.Descendants("employee").Where(n => n.Descendants("name").FirstOrDefault().Value == emp.Name).Remove();

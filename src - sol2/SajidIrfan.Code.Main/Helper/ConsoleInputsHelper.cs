@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SajidIrfan.Code.Helper
 {
-    public static class GetInputsFromConsole
+    public class ConsoleInputsHelper : IConsoleInputsHelper
     {
 
         /// <summary>
@@ -12,7 +12,7 @@ namespace SajidIrfan.Code.Helper
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns>data entered by user</returns>
-        public static string GetDetails<T>()
+        public string GetDetails<T>()
         {
             string result = "";
             try
@@ -23,13 +23,13 @@ namespace SajidIrfan.Code.Helper
                 {
                     result = input;
                 }
-                else if (type.Name.ToLower() == "int32" && Convert.ToInt32(input) > 0)
+                else if (type.Name.ToLower() == "int32" && Convert.ToInt32(input) > 0) //validation
                 {
                     result = input;
                 }
                 else
                 {
-                    System.Console.WriteLine($"Invalid input. Please retry.");
+                    System.Console.WriteLine($"Invalid Type. Doesn't support this type.");
                 }
             }
             catch (System.Exception)
@@ -38,6 +38,15 @@ namespace SajidIrfan.Code.Helper
             }
 
             return result;
+        }
+
+
+        /// <summary>
+        /// Holds the screen
+        /// </summary>
+        public void ClosingHolder()
+        {
+            System.Console.ReadKey();
         }
     }
 }

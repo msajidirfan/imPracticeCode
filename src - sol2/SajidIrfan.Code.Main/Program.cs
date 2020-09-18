@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SajidIrfan.Code.AppRun;
+using SajidIrfan.Code.Helper;
 using SajidIrfan.Code.Models;
 using SajidIrfan.Code.Services;
 
@@ -40,10 +42,13 @@ namespace SajidIrfan.Code
             serviceCollection.Configure<AppSettings>(configuration.GetSection("Configuration"));
             ConfigureConsole(configuration);
 
+            serviceCollection.AddSingleton<IConsoleWriteHelper, ConsoleWriteHelper>();
+            serviceCollection.AddSingleton<IConsoleInputsHelper, ConsoleInputsHelper>();
+
             // add services
             serviceCollection.AddTransient<ITestService, TestService>();
-            //serviceCollection.AddTransient<IXMLService, XMLService>();
-            serviceCollection.AddTransient<IXMLService, XMLServiceExtended>();
+            serviceCollection.AddTransient<IXMLService, XMLService>();
+            serviceCollection.AddTransient<IXMLServiceExtended, XMLServiceExtended>();
 
             // add app
             serviceCollection.AddTransient<App>();

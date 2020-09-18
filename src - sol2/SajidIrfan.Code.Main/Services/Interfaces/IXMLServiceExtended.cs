@@ -6,7 +6,7 @@ namespace SajidIrfan.Code.Services
     /// <summary>
     /// XML Service that performs CRUD operations using EmployeeExtended object in XML file
     /// </summary>
-    public interface IXMLService
+    public interface IXMLServiceExtended
     {
         /// <summary>
         /// Prints all employees to screen
@@ -19,7 +19,7 @@ namespace SajidIrfan.Code.Services
         /// </summary>
         /// <param name="name">Name of Employee</param>
         /// <returns>Employee Details, if Name match</returns>
-        Employee GetEmployeeByName(string name);
+        EmployeeExtended GetEmployeeByName(string name);
 
         /// <summary>
         /// Gets all employees count from XML. 
@@ -51,6 +51,6 @@ namespace SajidIrfan.Code.Services
         /// Gets all employees from XML. 
         /// </summary>
         /// <returns>all employees</returns>
-        List<Employee> GetAllEmployees();
+        List<EmployeeExtended> GetAllEmployees();
     }
 }
